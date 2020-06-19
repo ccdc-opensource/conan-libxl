@@ -11,3 +11,4 @@ extends:
     package: libxl
     package_version: 3.8.2.0
     destination_repository: ccdc-3rdparty-conan
+    artifactory_api_key: $(artifactory.api.key)
