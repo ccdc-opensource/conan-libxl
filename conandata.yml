@@ -1,0 +1,8 @@
+"sources":
+  "3.8.2.0":
+    "sha256": "411cd1f014ef9f4511ab817b0b90405003dcea6337e352beb12ee97e41ddc0c6"
+    "url": "https://artifactory.ccdc.cam.ac.uk/artifactory/ccdc-3rd-party-sources/libxl-src-3.8.2.0.zip"
+  "3.8.5.0":
+    "sha256": "80748e86c7268aa2221c83a679ff44fbed220bf4adc1c16770d2ace23c4f1b21"
+    "url": "https://artifactory.ccdc.cam.ac.uk/artifactory/ccdc-3rd-party-sources/libxl-src-3.8.5.0.zip"
+
