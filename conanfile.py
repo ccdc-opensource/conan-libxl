@@ -36,6 +36,7 @@ class LibXlConan(ConanFile):
         url = self.conan_data["sources"][self.version]["url"]
         archive_name = f'libxl-src-{self.version}'
         os.rename(archive_name, self._source_subfolder)
+        tools.replace_in_file(os.path.join(self._source_subfolder, 'CMakeLists.txt'), '${LIBXL_SHARED}', 'LIBXL_SHARED')
 
     def _configure_cmake(self):
         if self._cmake:
