@@ -4,13 +4,14 @@ from conans import ConanFile, CMake, tools
 
 class LibXlConan(ConanFile):
     name = "libxl"
+    # version = '3.8.5.0'
     description = "C++ Excel Library to read/write xls/xlsx files."
     homepage = "https://www.libxl.com/"
     topics = ("excel")
     license = "Proprietary"
     generators = "cmake"
     settings = "os", "compiler", "arch", "build_type"
-    exports_sources = ["CMakeLists.txt"]
+    exports_sources = ["CMakeLists.txt", "patches/*"]
     options = {"shared": [True, False],
                "fPIC": [True, False],
                }
@@ -41,11 +42,13 @@ class LibXlConan(ConanFile):
             return self._cmake
         self._cmake = CMake(self)
         if self.options.shared:
-            self._cmake.definitions["LIBXL_SHARED"] = 'TRUE'
+            self._cmake.definitions["LIBXL_SHARED"] = 'ON'
         self._cmake.configure()
         return self._cmake
 
     def build(self):
+        for patch in self.conan_data["patches"][self.version]:
+            tools.patch(**patch)
         cmake = self._configure_cmake()
         cmake.build()
 

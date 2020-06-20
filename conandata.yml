@@ -5,4 +5,10 @@
   "3.8.5.0":
     "sha256": "80748e86c7268aa2221c83a679ff44fbed220bf4adc1c16770d2ace23c4f1b21"
     "url": "https://artifactory.ccdc.cam.ac.uk/artifactory/ccdc-3rd-party-sources/libxl-src-3.8.5.0.zip"
-
+patches:
+  "3.8.2.0":
+    - patch_file: "patches/clang-3.8.2.0.patch"
+      base_path: "source_subfolder"
+  "3.8.5.0":
+    - patch_file: "patches/clang-3.8.5.0.patch"
+      base_path: "source_subfolder"

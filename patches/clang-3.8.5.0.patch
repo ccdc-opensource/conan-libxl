@@ -1,0 +1,45 @@
+diff -u -r a/SheetImplT.cpp b/SheetImplT.cpp
+--- a/SheetImplT.cpp
++++ b/SheetImplT.cpp
+@@ -5489,7 +5489,7 @@
+                 {
+                     if(index == count)
+                     {
+-                        if(_book->_lbl[i].builtin() && _book->_lbl[i].name > 0 && wcslen(_book->_lbl[i].name) == 1)
++                        if(_book->_lbl[i].builtin() && _book->_lbl[i].name && wcslen(_book->_lbl[i].name) == 1)
+                         {
+                             switch(_book->_lbl[i].name[0])
+                             {
+diff -u -r a/lmx/lmxuser.h b/lmx/lmxuser.h
+--- a/lmx/lmxuser.h
++++ b/lmx/lmxuser.h
+@@ -935,7 +935,7 @@
+         {
+         #if defined( _MSC_VER ) || defined( __BORLANDC__ )
+             ar_out = _atoi64( ar_in.c_str() );
+-        #elif defined( __SUNPRO_CC ) || defined( __HP_aCC ) || defined( __IBMCPP__ ) || (defined( __GNUC__ ) && (defined( sun ) || defined( __sun )))
++        #elif defined(__clang__) || defined( __SUNPRO_CC ) || defined( __HP_aCC ) || defined( __IBMCPP__ ) || (defined( __GNUC__ ) && (defined( sun ) || defined( __sun )))
+             ar_out = 0;
+             LMXSTDCRT::sscanf( ar_in.c_str(), "%lld", &ar_out );
+         #elif defined( __GNUC__ )
+@@ -978,7 +978,7 @@
+             ar_out = 0;
+         #if defined( _MSC_VER ) || defined( __BORLANDC__ )
+             LMXSTDCRT::sscanf( ar_in.c_str(), "%I64u", &ar_out );
+-        #elif defined( __SUNPRO_CC ) || defined( __HP_aCC ) || defined( __IBMCPP__ ) || (defined( __GNUC__ ) && (defined( sun ) || defined( __sun )))
++        #elif defined(__clang__) || defined( __SUNPRO_CC ) || defined( __HP_aCC ) || defined( __IBMCPP__ ) || (defined( __GNUC__ ) && (defined( sun ) || defined( __sun )))
+             LMXSTDCRT::sscanf( ar_in.c_str(), "%llu", &ar_out );
+         #elif defined( __GNUC__ )
+             LMXSTDCRT::sscanf( ar_in.c_str(), "%Lu", &ar_out );
+diff -u -r a/officeart/OfficeArtBlipJPEG.h b/officeart/OfficeArtBlipJPEG.h
+--- a/officeart/OfficeArtBlipJPEG.h
++++ b/officeart/OfficeArtBlipJPEG.h
+@@ -87,7 +87,7 @@
+         {
+             OfficeArtBlip<TCHAR, 0xF01D>::setInstance(0x46A);
+ 
+-            if(OfficeArtBlip<TCHAR, 0xF01D>::BLIPFileData.size() >= 3 && OfficeArtBlip<TCHAR, 0xF01D>::BLIPFileData[0] != 0xFF || OfficeArtBlip<TCHAR, 0xF01D>::BLIPFileData[1] != 0xD8) {
++            if((OfficeArtBlip<TCHAR, 0xF01D>::BLIPFileData.size() >= 3 && OfficeArtBlip<TCHAR, 0xF01D>::BLIPFileData[0] != 0xFF) || OfficeArtBlip<TCHAR, 0xF01D>::BLIPFileData[1] != 0xD8) {
+                 throw xlerror("invalid jpg file");
+             }
+ 
