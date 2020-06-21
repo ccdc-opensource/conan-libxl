@@ -37,6 +37,7 @@ class LibXlConan(ConanFile):
         archive_name = f'libxl-src-{self.version}'
         os.rename(archive_name, self._source_subfolder)
         tools.replace_in_file(os.path.join(self._source_subfolder, 'CMakeLists.txt'), '${LIBXL_SHARED}', 'LIBXL_SHARED')
+        tools.replace_in_file(os.path.join(self._source_subfolder, 'CMakeLists.txt'), 'set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "" FORCE)', '')
 
     def _configure_cmake(self):
         if self._cmake:
